@@ -1,4 +1,6 @@
 
+
+
 """
 SNMP Walk Application
 A simple Python application for performing SNMP walks on network devices.
@@ -6,7 +8,9 @@ A simple Python application for performing SNMP walks on network devices.
 
 import argparse
 import sys
-from pysnmp.hlapi import *
+# from pysnmp.hlapi import (nextCmd, CommunityData, UdpTransportTarget, ContextData, ObjectType, ObjectIdentity, SnmpEngine)
+from pysnmp.hlapi.v3arch.asyncio import *
+#from pysnmp.hlapi.v1arch.asyncio import *
 from pysnmp.error import PySnmpError
 import ipaddress
 
@@ -49,7 +53,7 @@ class SNMPWalker:
                 raise ValueError(f"Unsupported SNMP version: {self.version}")
             
             # Perform SNMP walk
-            for (errorIndication, errorStatus, errorIndex, varBinds) in nextCmd(
+            for (errorIndication, errorStatus, errorIndex, varBinds) in next_cmd(
                 SnmpEngine(),
                 CommunityData(self.community, mpModel=snmp_version),
                 UdpTransportTarget((self.target, self.port)),
@@ -100,7 +104,7 @@ class SNMPWalker:
             else:
                 raise ValueError(f"Unsupported SNMP version: {self.version}")
             
-            for (errorIndication, errorStatus, errorIndex, varBinds) in getCmd(
+            for (errorIndication, errorStatus, errorIndex, varBinds) in get_cmd(
                 SnmpEngine(),
                 CommunityData(self.community, mpModel=snmp_version),
                 UdpTransportTarget((self.target, self.port)),
