@@ -10,8 +10,7 @@ phoneNumber = input("Enter phone number to be searched: ")
 
 for x in os.listdir():
         if x == outPut:
-                # Prints only text file present in My Folder
-                print("Found file and removing:", x)
+                print("Found file outFile.txt and removing:", x)
                 os.remove("outFile.txt")
 i = 0
 with open(outPut, 'w') as f:
