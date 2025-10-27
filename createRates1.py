@@ -6,7 +6,7 @@ with open("6-digit-dn.csv", "r",) as file:
         randomNumber = random.randint(1,10000)
         randomLength = len(str(randomNumber))
         # Below line is similar to the chomp fub=nction in Perl 
-        line = lines.rstrip('\n')
+        line = lines.rstrip('\n')  # Similar to chomp in perl
         # -----------------------------------------------------
         if (randomLength == 4):
             with open("rates.txt", "a") as file:
